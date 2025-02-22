@@ -1,6 +1,5 @@
 # FL-RL-Networks
-Federated Reinforcement Learning for Networks
-🚀 **Federated Reinforcement Learning for Wireless Networks**  
+**Federated Reinforcement Learning for Wireless Networks**  
 
 ## 📌 **Description**  
 Ce projet explore l'utilisation de l'apprentissage fédéré (**Federated Learning, FL**) combiné à l'apprentissage par renforcement (**Reinforcement Learning, RL**) pour optimiser la gestion dynamique des ressources dans les réseaux sans fil. Chaque antenne s'entraîne localement et partage uniquement les mises à jour de son modèle, réduisant ainsi la charge réseau et garantissant la confidentialité des données.  
