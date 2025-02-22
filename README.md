@@ -55,5 +55,5 @@ FedRL-Wireless/
 - Intégration d'autres stratégies d'agrégation FL (FedProx, Scaffold).  
 - Expérimentations avec différents algorithmes de RL (DQN, PPO).  
 
-## 👨‍💻 **Contributeurs**  
-🔹 [Ton Nom](https://github.com/Faj1223)  
+## **Contributeurs**  
+🔹 https://github.com/Faj1223
