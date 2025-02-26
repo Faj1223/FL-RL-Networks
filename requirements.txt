@@ -1,0 +1,6 @@
+numpy
+matplotlib
+pandas
+torch
+gym
+flwr   # Flower pour l’apprentissage fédéré
