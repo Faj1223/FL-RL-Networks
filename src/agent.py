@@ -70,7 +70,7 @@ class DDPGAgent:
         self.tau = tau
         self.max_action = max_response
 
-    def select_response(self, demand, noise=0.1):
+    def select_response(self, demand: list, noise: float = 0.1):
         """ donne une reponse en fonction de la demande """
         demand = torch.FloatTensor(demand).unsqueeze(0) # Transformer la demande en tenseur PyTorch
         response = self.actor(demand).detach().numpy()[0] # Prédire la reponse avec le réseau Actor
