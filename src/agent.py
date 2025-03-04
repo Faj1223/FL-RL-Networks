@@ -42,7 +42,7 @@ class ReplayBuffer:
     def add(self, demand, response, reward, next_demand):
         self.buffer.append((demand, response, reward, next_demand))
 
-    def sample(self, batch_size):
+    def sample(self, batch_size = 64):
         batch = random.sample(self.buffer, batch_size)
         demand, reponse, rewards, next_demand = zip(*batch)
         return np.array(demand), np.array(reponse), np.array(rewards), np.array(next_demand)
@@ -70,7 +70,7 @@ class DDPGAgent:
         self.tau = tau
         self.max_action = max_response
 
-    def select_response(self, demand: list, noise: float = 0.1):
+    def select_response(self, demand: list, noise: float = 1.3):
         """ donne une reponse en fonction de la demande """
         demand = torch.FloatTensor(demand).unsqueeze(0) # Transformer la demande en tenseur PyTorch
         response = self.actor(demand).detach().numpy()[0] # Prédire la reponse avec le réseau Actor
@@ -81,6 +81,7 @@ class DDPGAgent:
     def train(self, batch_size=64):
         """ Entraîne le modèle avec des échantillons du Replay Buffer """
         if self.buffer.size() < batch_size:
+            print("Pas encore assez de données pour entrainer le modèle.")
             return  # Attendre d'avoir assez de données
 
         demand, response, rewards, next_demand = self.buffer.sample(batch_size)

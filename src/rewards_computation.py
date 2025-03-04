@@ -4,9 +4,16 @@ from env import WirelessEnv
 
 def compute_rewards( response_per_antenna: dict, env: WirelessEnv, alpha = 0.3)-> dict:
         """
-        Calcule les récompenses des antennes en fonction de la reponse des antennes
-        et de l'interférence.
-        """
+    Calcule les récompenses des antennes selon leur signal et les interférences.
+
+    Args:
+        response_per_antenna (dict): {antenna_id: signal_envoyé}
+        env (WirelessEnv): L'environnement contenant les antennes et utilisateurs.
+        alpha (float): Facteur d'atténuation des interférences.
+
+    Returns:
+        dict: {antenna_id: reward}
+    """
         distances = env._user_antennas_distance()
         rewards = {a["id"]: 0 for a in env.antennas}
         for user in env.users:
@@ -17,8 +24,9 @@ def compute_rewards( response_per_antenna: dict, env: WirelessEnv, alpha = 0.3)-
                 connected_antenna_id = min(user_distances, key= user_distances.get)
 
                 # signal util
+                
                 signal_util = response_per_antenna[connected_antenna_id]/(1+user_distances[connected_antenna_id])
-
+                
                 # interférences
                 interference = sum(
                     response_per_antenna[other_antenna_id] / (1 + user_distances[other_antenna_id])**2
@@ -28,7 +36,7 @@ def compute_rewards( response_per_antenna: dict, env: WirelessEnv, alpha = 0.3)-
                 # Reward pour l'utilisateur
                 reward_user = signal_util - alpha * interference
         
-                # On l'ajoute à l'antenne connectée
+                # On l'ajoute à la récompense de l'antenne connectée.
                 rewards[connected_antenna_id] += reward_user
 
         return rewards

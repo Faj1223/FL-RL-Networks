@@ -7,7 +7,7 @@ class WirelessEnv:
         self.num_users = num_users
         self.antennas = self._generate_antennas()
         self.users = self._generate_users()
-        self.reset()
+        self._reset()
 
 
     def _generate_antennas(self):
