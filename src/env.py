@@ -25,7 +25,7 @@ class WirelessEnv:
         return [{
             "id": i,
             "pos": np.random.uniform(0, 100, 2),  # Position aléatoire
-            "demand": 1+i  # Demande aléatoire en puissance/bande passante
+            "demand": 2*(i^2)+(3*i)+1  # Demande en puissance/bande passante
         } for i in range(self.num_users)]
     
 
